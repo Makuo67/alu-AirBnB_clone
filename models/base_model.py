@@ -4,6 +4,7 @@
 
 from uuid import uuid4
 from datetime import datetime
+from models import storage
 
 
 class BaseModel:
@@ -15,6 +16,7 @@ class BaseModel:
             self.id = str(self.id)
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new(self)
         else:
             for key, value in kwargs.items():
                 format = "%Y-%m-%dT%H:%M:%S.%f"
@@ -32,6 +34,7 @@ class BaseModel:
         # updates to current time
         updated_at = datetime.now()
         return updated_at
+        storage.save(self)
 
     def to_dict(self):
         # Dictionary representation of the instance with "__class__" name included

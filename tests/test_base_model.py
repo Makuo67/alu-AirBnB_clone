@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 """Unit Test Suites"""
-
 import unittest
+import datetime
 from models.base_model import BaseModel
 
 
@@ -15,10 +15,27 @@ class BaseModelTests(unittest.TestCase):
         id_2 = BaseModel()
         id_1 = id_1.id
         id_2 = id_2.id
-
+        self.assertIsInstance(id_1, BaseModel)
+        self.assertTrue(hasattr(id_1, "id"))
+        self.assertIsInstance(id_1, str)
         self.assertNotEqual(id_1, id_2)
 
     def test_created_at(self):
-        """Tests that times for created_at and updated_at are not the same"""
+        """Tests for the return type of created_at"""
         created_at = BaseModel()
-        self.assertNotEqual(created_at.created_at, created_at.updated_at)
+        self.assertIsInstance(created_at.created_at, datetime)
+
+    def test_save(self):
+        """Test the save method"""
+        saved = BaseModel()
+        self.assertTrue(saved.id, saved)
+
+    def test__str__(self):
+        """Test if a string representation of the class is returned"""
+        self.assertTrue(BaseModel.__str__, str)
+
+    def test_todict(self):
+        """Test to_dict method to ensure in returns a dictionary"""
+        dict = BaseModel()
+        new_dict = dict.to_dict()
+        self.assertIsInstance(new_dict['created_at'], str)
