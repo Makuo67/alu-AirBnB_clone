@@ -3,10 +3,9 @@
 """Storage module for Airbnb Instances"""
 
 import json
-from models.base_model import BaseModel
 
 
-class FileStorage():
+class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
@@ -22,8 +21,8 @@ class FileStorage():
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""
         new_dict = {}
-        for key, object in self.__objects.items():
-            new_dict[key] = object.to_dict()
+        for key, value in self.__objects.items():
+            new_dict[key] = value.to_dict()
         with open(self.__file_path, mode="w", encoding="UTF-8") as file:
             json.dump(new_dict, file)
 
