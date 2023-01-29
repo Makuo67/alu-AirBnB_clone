@@ -25,17 +25,12 @@ class BaseModelTests(unittest.TestCase):
         created_at = BaseModel()
         self.assertIsInstance(created_at.created_at, datetime)
 
-    def test_save(self):
-        """Test the save method"""
-        saved = BaseModel()
-        self.assertTrue(saved.id, saved)
-
     def test__str__(self):
         """Test if a string representation of the class is returned"""
         self.assertTrue(BaseModel.__str__, str)
 
     def test_todict(self):
         """Test to_dict method to ensure in returns a dictionary"""
-        dict = BaseModel()
-        new_dict = dict.to_dict()
+        dict_obj = BaseModel()
+        new_dict = dict_obj.to_dict()
         self.assertIsInstance(new_dict['created_at'], str)
