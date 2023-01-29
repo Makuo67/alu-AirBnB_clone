@@ -6,7 +6,6 @@ from models import storage
 
 class TestFileStorage(unittest.TestCase):
     """Test suites for the FileStorage class"""
-    my_model = BaseModel()
 
     def test_storageinstance(self):
         """Tests if storage is an instance of Filestorage"""
