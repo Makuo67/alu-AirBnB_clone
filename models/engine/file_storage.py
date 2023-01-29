@@ -28,9 +28,11 @@ class FileStorage:
 
     def reload(self):
         """deserialize JSON to __objects"""
+        new_dict = {}
         try:
             with open('file.json', 'r') as json_file:
                 new_dict = json.load(json_file)
-                print(new_dict)
+                for key, value in new_dict.items():
+                    self.__objects[key] = eval(value["__class__"])(**value)
         except FileNotFoundError:
             pass
