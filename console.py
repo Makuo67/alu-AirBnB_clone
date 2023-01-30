@@ -1,9 +1,4 @@
 #!/usr/bin/python3
-/*
-Title:AirBnB Clone
-Author: kelly villa
-Date:feb 2020
-Availaility:https://github.com/02KellyV/AirBnB_clone/blob/master/console.py */
 """ Entry points for a command interpreter """
 
 import cmd
