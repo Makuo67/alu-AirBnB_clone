@@ -1,42 +1,47 @@
 #!/usr/bin/python3
-""" console  """
+/*
+Title:AirBnB Clone
+Author: kelly villa
+Date:feb 2020
+Availaility:https://github.com/02KellyV/AirBnB_clone/blob/master/console.py */
+""" Entry points for a command interpreter """
 
 import cmd
 import models
+from models.user import user
 from models.base_model import BaseModel
-from models.user import User
+from model.place import place
 from models.city import City
-from models.place import Place
 from models.state import State
 from models.review import Review
 from models.amenity import Amenity
-import shlex
+import Shlex
 
-
-classes_dict = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
-                "Place": Place, "Review": Review, "State": State, "User": User}
+classes_dict= {"Amenity": Amenity, "BaseModel":BaseModel, "City": City, "Place": Place, "Review": Review, "State": State, "User": User}
 
 
 class HBNBCommand(cmd.Cmd):
-    """ Entry point of the command interpreter """
+    """
+    commnand interpreter entry point
+    """
     collection_keys = classes_dict.keys()
     prompt = '(hbnb)'
 
-    def do_quit(self, _input):
-        """Quit command to exit the program"""
+    def do_EOF(self, _input):
+        """ exiting the cmd console"""
         return True
 
-    def do_EOF(self, _input):
-        """Exits command console"""
+    def do_quit(self, _input):
+        """exit command"""
         return True
 
     def emptyline(self):
-        """An empty line + ENTER should not execute anything"""
+        """empty line"""
         return False
 
     def do_create(self, _input_class_name):
-        """Creates a new instance of BaseModel in JSON"""
-        if not _input_class_name:
+        """creates a bew instance of BaseModel and saves in JSON"""
+          if not _input_class_name:
             print("** class name missing **")
             return
         if _input_class_name not in classes_dict.keys():
@@ -44,42 +49,39 @@ class HBNBCommand(cmd.Cmd):
             return
         newinstance = classes_dict[_input_class_name]()
         newinstance.save()
-        print(newinstance.id)
+        print(newinstance.id
 
     def do_show(self, _input):
-        """Prints the string representation of an instance
-                  based on the class name and id"""
-        input2 = _input
-        if len(input2.split(' ')[0]) is 0:
+        """ prints the string rep of an instance according to class name and id"""
+        input_2 = _input
+        if len(input2.split(' ')[0] is 0:
             print("** class name missing **")
             return
         if input2.split(' ')[0] not in self.collection_keys:
-            print("** class doesn't exist **")
-            return
+           print("** class doesn't exit **")
+           return
         if len(input2.split()) is 1:
-            print("** instance id missing **")
-            return
+           print("** instance id missing **")
+           return
         models.storage.reload()
         for key, value in models.storage.all().items():
-            if value.__class__.__name__ == input2.split(' ')[0] \
-               and value.id == input2.split(' ')[1]:
-                print(value.__str__())
-                return
+            if value.__class__.__name__== input2.split(' ')[0] \ and value.id == input2.split(' ')[1]:
+            print(value.__str__())
+            return
         print("** no instance found **")
 
     def do_destroy(self, _input):
-        """Deletes an instance based on the class name and id
-        """
-        if len(_input.split(' ')[0]) is 0:
-            print("** class name missing **")
-            return
-        if _input.split(' ')[0] not in self.collection_keys:
-            print("** class doesn't exist **")
-            return
-        if len(_input.split(' ')) is 1:
-            print("** instance id missing **")
-            return
-        class_name, class_id = (_input.split(' ')[0], _input.split(' ')[1])
+    """ deletes an instance according to class name and id """
+    if len(_input.split(' ')[0] is 0:
+        print("** class name missing **")
+        return
+    if _input.split(' ')[0] not in self.collection_keys:
+        print("** class doesn't exist **")
+        return
+    if len(_input.split(' ')) is 1:
+       print("** instance id missing **")
+       return
+       class_name, class_id = (_input.split(' ')[0], _input.split(' ')[1])
         query_key = class_name + '.' + class_id
         if query_key not in models.storage.all().keys():
             print("** no instance found **")
@@ -88,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
         models.storage.save()
 
     def do_all(self, _input_class):
-        """Prints all string representation of all instances
+        """Prints all string repr of all instances
             based or not on the class name
         """
 
@@ -104,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, _input):
         """Updates an instance based on the class name and id by adding
-           or updating attribute (save the change into the JSON file)
+           or updating attribute and saves the change into the JSON file
         """
         _input = shlex.split(_input)
         query_key = ''
