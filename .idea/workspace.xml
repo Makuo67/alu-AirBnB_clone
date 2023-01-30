@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e38aff11-7fea-4526-ba0f-1b4540b9fda0" name="Changes" comment="" />
+    <list default="true" id="e38aff11-7fea-4526-ba0f-1b4540b9fda0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +39,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\Documents\AirBnB\models" />
       <recent name="C:\Users\Lenovo\Documents\AirBnB\tests\test_models\test_engine" />
       <recent name="C:\Users\Lenovo\Documents\AirBnB\tests\test_models" />
     </key>
@@ -52,6 +55,8 @@
       <workItem from="1674629039802" duration="833000" />
       <workItem from="1674998888190" duration="3530000" />
       <workItem from="1675011046003" duration="18300000" />
+      <workItem from="1675034666299" duration="784000" />
+      <workItem from="1675075080607" duration="1120000" />
     </task>
     <servers />
   </component>

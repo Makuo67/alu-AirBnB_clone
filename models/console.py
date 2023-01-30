@@ -125,6 +125,5 @@ class HBNBCommand(cmd.Cmd):
                 setattr(tmp_dict.get(key), line_list[2], casting(arg_3))
                 tmp_dict[key].save()
 
-
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
