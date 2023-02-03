@@ -1,155 +1,130 @@
 #!/usr/bin/python3
-""" Entry points for a command interpreter """
+"""
+Script for the entry point of the command interpreter
+"""
+
 
 import cmd
-import models
-from models.user import user
+import shlex
 from models.base_model import BaseModel
-from model.place import place
-from models.city import City
-from models.state import State
-from models.review import Review
-from models.amenity import Amenity
-import Shlex
-
-classes_dict= {"Amenity": Amenity, "BaseModel":BaseModel, "City": City, "Place": Place, "Review": Review, "State": State, "User": User}
+from models.engine.file_storage import FileStorage
 
 
 class HBNBCommand(cmd.Cmd):
-    """
-    commnand interpreter entry point
-    """
-    collection_keys = classes_dict.keys()
+    """Command Interpreter for HBNB"""
     prompt = '(hbnb)'
+    class_list = ["BaseModel", "User", "State",
+                  "City", "Amenity", "Place", "Review"]
 
-    def do_EOF(self, _input):
-        """ exiting the cmd console"""
+    def do_quit(self,arg):
+        """Quit the CLI prompt"""
         return True
 
-    def do_quit(self, _input):
-        """exit command"""
+    def do_EOF(self, arg):
+        """EOF command to exit the program"""
         return True
 
-    def emptyline(self):
-        """empty line"""
-        return False
+    def emptyline(self) -> bool:
+        """Do nothing if empty line"""
+        pass
 
-    def do_create(self, _input_class_name):
-        """creates a bew instance of BaseModel and saves in JSON"""
-          if not _input_class_name:
+    def help_quit(self):
+        """Help for quit commands"""
+        print("Quit command to exit the program")
+
+    def help_EOF(self):
+        """Help for EOF commands"""
+        print("EOF command to exit the program")
+
+    def do_create(self, line):
+        """Creates a new instance of BaseModel
+        saves it (to the JSON file) and prints the id"""
+
+        if not line:
             print("** class name missing **")
-            return
-        if _input_class_name not in classes_dict.keys():
+        elif line not in self.class_list:
             print("** class doesn't exist **")
-            return
-        newinstance = classes_dict[_input_class_name]()
-        newinstance.save()
-        print(newinstance.id
 
-    def do_show(self, _input):
-        """ prints the string rep of an instance according to class name and id"""
-        input_2 = _input
-        if len(input2.split(' ')[0] is 0:
+    def do_show(self, line):
+        """Prints the string representation of an instance based on the class name and id"""
+        lists = line.split(" ")
+        if not line:
             print("** class name missing **")
-            return
-        if input2.split(' ')[0] not in self.collection_keys:
-           print("** class doesn't exit **")
-           return
-        if len(input2.split()) is 1:
-           print("** instance id missing **")
-           return
-        models.storage.reload()
-        for key, value in models.storage.all().items():
-            if value.__class__.__name__== input2.split(' ')[0] \ and value.id == input2.split(' ')[1]:
-            print(value.__str__())
-            return
-        print("** no instance found **")
-
-    def do_destroy(self, _input):
-    """ deletes an instance according to class name and id """
-    if len(_input.split(' ')[0] is 0:
-        print("** class name missing **")
-        return
-    if _input.split(' ')[0] not in self.collection_keys:
-        print("** class doesn't exist **")
-        return
-    if len(_input.split(' ')) is 1:
-       print("** instance id missing **")
-       return
-       class_name, class_id = (_input.split(' ')[0], _input.split(' ')[1])
-        query_key = class_name + '.' + class_id
-        if query_key not in models.storage.all().keys():
-            print("** no instance found **")
-            return
-        del models.storage.all()[query_key]
-        models.storage.save()
-
-    def do_all(self, _input_class):
-        """Prints all string repr of all instances
-            based or not on the class name
-        """
-
-        if _input_class:
-            if _input_class not in self.collection_keys:
-                print("** class doesn't exist **")
-                return
-
-        for key_items in models.storage.all().keys():
-            key_items = models.storage.all()[key_items]
-            print(key_items)
-        return
-
-    def do_update(self, _input):
-        """Updates an instance based on the class name and id by adding
-           or updating attribute and saves the change into the JSON file
-        """
-        _input = shlex.split(_input)
-        query_key = ''
-
-        if len(_input) is 0:
-            print("** class name missing **")
-            return
-        if _input[0] not in self.collection_keys:
+        elif line not in self.class_list:
             print("** class doesn't exist **")
-            return
-        if len(_input) is 1:
+        elif len(line) < 2:
             print("** instance id missing **")
-            return
-        if len(_input) > 1:
-            query_key = _input[0] + '.' + _input[1]
-        if query_key not in models.storage.all().keys():
-            print("** no instance found **")
-            return
-        if len(_input) is 2:
-            print('** attribute name missing **')
-            return
-        if len(_input) is 3:
-            print('** value missing **')
-            return
-        key_name = _input[2]
-        input_value = _input[3]
-        setattr(models.storage.all()[query_key], key_name, input_value)
-
-        models.storage.all()[query_key].save()
-
-    def default(self, inp):
-        """Retrieve all instances class using: <class name>.all()"""
-        count = 0
-        words = inp.split(".")
-
-        if words[0] in classes_dict and words[1] == "all()":
-            self.do_all(words[0])
-        elif words[0] in classes_dict and words[1] == "count()":
-            if (words[0] not in classes_dict):
-                print("** class doesn't exist **")
-                return (False)
-            else:
-                for key in models.storage.all():
-                    if key.startswith(words[0]):
-                        count += 1
-                print(count)
         else:
-            print("*** Unknown syntax: {}".format(inp))
+            tem_dict = FileStorage().all()
+            key = f"{lists[0]}.{lists[1]}"
+            if key in tem_dict:
+                print(tem_dict[key])
+            else:
+                print("** no instance found **")
+
+    def do_destroy(self, line):
+        """Deletes an instance based on the class name and id
+        (save the change into the JSON file)"""
+        lists = line.split(" ")
+        if not line:
+            print("** class name missing **")
+        elif line not in self.class_list:
+            print("** class doesn't exist **")
+        elif len(line) < 2:
+            print("** instance id missing **")
+        else:
+            tem_dict = FileStorage().all()
+            key = f"{lists[0]}.{lists[1]}"
+            if key in tem_dict:
+                del tem_dict[key]
+                FileStorage.save()
+            else:
+                print("** no instance found **")
+
+    def do_all(self, line):
+        """ Prints all string representation of all instances based or not on the class name"""
+        line_list = line.split(" ")
+        obj_list = []
+        tem_dict = FileStorage().all()
+        if len(line) == 0:
+            for objj in tem_dict.values():
+                obj_list.append(str(objj))
+            print(obj_list)
+        elif line_list[0] in self.class_list:
+            for key, value in tem_dict.items():
+                if line_list[0] in key:
+                    obj_list.append(str(value))
+            print(obj_list)
+        else:
+            print("** class doesn't exist **")
+
+    def do_update(self, line):
+        """Update an instance based on the class name and id by adding or updating an attribute.
+        Usage: update <class_name> <id> <attribute_name> "<attribute_value>"
+        """
+        line_list = line.split(" ")
+        if not line:
+            print("** class name missing **")
+        elif line_list[0] not in self.class_list:
+            print("** class doesn't exist **")
+        elif len(line_list) == 1:
+            print("** instance id missing **")
+        else:
+            tmp_dict = FileStorage().all()
+            key = f"{line_list[0]}.{line_list[1]}"
+            if key not in tmp_dict:
+                print("** no instance found **")
+            elif len(line_list) == 2:
+                print("** attribute name missing **")
+            elif len(line_list) == 3:
+                print("** value missing **")
+            else:
+                casting = type(eval(line_list[3]))
+                arg_3 = line_list[3]
+                arg_3 = arg_3.strip("'")
+                arg_3 = arg_3.strip('"')
+                setattr(tmp_dict.get(key), line_list[2], casting(arg_3))
+                tmp_dict[key].save()
 
 
 if __name__ == '__main__':
