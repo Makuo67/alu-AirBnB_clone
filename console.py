@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Script for the entry point of the command interpreter
+Console Module
 """
 
 import cmd
