@@ -1,0 +1,87 @@
+
+/* Styles for Places section */
+
+.places h1{
+    font-size: 30px;
+    text-align: left;
+    padding-left: 120px;
+}
+
+/* Article box styling */
+ article {
+     display: grid;
+     grid: auto/ auto auto;
+     grid-gap: 30px;
+     padding-left: 150px;
+     padding-right: 150px;
+    width: auto;
+    margin: 20px;
+
+}
+ article > .box{
+     border: #FF5A5F 1px solid;
+    border-radius: 4px;
+     height: auto;
+ }
+  article > .box > .price_and_title {
+      margin-left: 100px;
+      display: grid;
+      grid: auto/ auto auto;
+  }
+
+  article > .box > .price_and_title > p {
+      font-size: 25px;
+      border: #FF5A5F 1px solid;
+      border-radius:50%;
+      margin:auto;
+      padding: 10px;
+      text-align: center;
+  }
+  article > .box > .information {
+      display: grid;
+      grid: auto/ auto auto auto;
+      margin-left: 60px;
+      margin-right: 60px;
+      border-top: #DDDDDD 1px solid;
+      border-bottom: #DDDDDD 1px solid;
+  }
+  article > .box > .user_and_description {
+      margin-left: 20px;
+      margin-right: 20px;
+  }
+
+  /* Last box styling */
+.single_box{
+     border: #FF5A5F 1px solid;
+    border-radius: 4px;
+     height: auto;
+    margin-left: 400px;
+    margin-right: 400px;
+
+ }
+.single_box > .price_and_title {
+      margin-left: 100px;
+      display: grid;
+      grid: auto/ auto auto;
+  }
+
+.single_box > .price_and_title > p {
+      font-size: 25px;
+      border: #FF5A5F 1px solid;
+      border-radius:50%;
+      margin:auto;
+      padding: 10px;
+      text-align: center;
+  }
+.single_box > .information {
+      display: grid;
+      grid: auto/ auto auto auto;
+      margin-left: 60px;
+      margin-right: 60px;
+      border-top: #DDDDDD 1px solid;
+      border-bottom: #DDDDDD 1px solid;
+  }
+.single_box > .user_and_description {
+      margin-left: 20px;
+      margin-right: 20px;
+  }

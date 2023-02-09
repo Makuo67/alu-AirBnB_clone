@@ -1,0 +1,12 @@
+header {
+            height: 70px;
+            background-color: white;
+            width: 100%;
+            color: white;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #CCCCCC;
+        }
+header > .img {
+    align-self: flex-start;
+padding-left: 20px;
+}

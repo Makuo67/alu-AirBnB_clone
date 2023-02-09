@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e38aff11-7fea-4526-ba0f-1b4540b9fda0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/web_static/0-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_static/1-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_static/2-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_static/3-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_static/styles/2-common.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_static/styles/2-footer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_static/styles/2-header.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_static/styles/3-common.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_static/styles/3-footer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_static/styles/3-header.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_static/styles/filters.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_static/styles/places.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console.py" beforeDir="false" afterPath="$PROJECT_DIR$/console.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -24,22 +39,27 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Ko7MjEKlO0WaeY5kAyKDWbAsBr" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lenovo/Documents/AirBnB&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Lenovo/Documents/AirBnB",
+    "list.type.of.created.stylesheet": "CSS",
+    "settings.editor.selected.configurable": "configurable.group.project"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\Documents\AirBnB\web_static\images" />
       <recent name="C:\Users\Lenovo\Documents\AirBnB" />
       <recent name="C:\Users\Lenovo\Documents\AirBnB\models" />
       <recent name="C:\Users\Lenovo\Documents\AirBnB\tests\test_models\test_engine" />
@@ -62,6 +82,10 @@
       <workItem from="1675114406396" duration="1999000" />
       <workItem from="1675462211353" duration="2532000" />
       <workItem from="1675541745033" duration="292000" />
+      <workItem from="1675542501812" duration="38697000" />
+      <workItem from="1675598056696" duration="584000" />
+      <workItem from="1675676252962" duration="1200000" />
+      <workItem from="1675986931959" duration="190000" />
     </task>
     <servers />
   </component>
