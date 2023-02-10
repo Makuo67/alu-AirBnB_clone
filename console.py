@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""CMD Console"""
+"""
+Console Module
+"""
 
 import cmd
 from models.base_model import BaseModel
@@ -13,14 +15,13 @@ from models.engine.file_storage import FileStorage
 
 
 class HBNBCommand(cmd.Cmd):
-    """Prompt command"""
+    """Command"""
     prompt = "(hbnb)"
     class_list = ["BaseModel", "User", "State",
                   "City", "Amenity", "Place", "Review"]
 
     def do_quit(self, line):
-
-        """Call quit command"""
+        """Exit if quit command is used"""
         return True
 
     def do_EOF(self, line):
@@ -29,12 +30,12 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-        """Ignore empty line"""
+        """Overrrides emptyline() default method"""
         pass
 
     def do_create(self, line):
-        """
-        Creates a new instance of BaseModel
+        """Creates a new instance of BaseModel,
+        saves it (to the JSON file) and prints the id
         """
         if not line:
             print("** class name missing **")
@@ -49,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """
-        Shows the string representation of an instance based
+        Prints the string representation of an instance based
         on the class name and id
         """
         line_list = line.split(" ")
@@ -70,6 +71,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, line):
         """
         Deletes an instance based on the class name and id
+        (save the change into the JSON file).
         """
         line_list = line.split(" ")
         if not line:
@@ -110,6 +112,8 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, line):
         """
         Updates an instance based on the class name and id
+        by adding or updating attribute
+        (save the change into the JSON file).
         """
         line_list = line.split(" ")
         if not line:
