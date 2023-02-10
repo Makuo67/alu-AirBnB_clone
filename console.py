@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 """
 Console Module
 """
@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         """Exit if EOF occurs"""
-        print()
+        print("")
         return True
 
     def emptyline(self):
@@ -42,8 +42,6 @@ class HBNBCommand(cmd.Cmd):
         elif line not in self.class_list:
             print("** class doesn't exist **")
         else:
-            # eval(line) will call class ex. if line is BaseModel
-            #  eval(line)() = BaseModel()
             created = eval(line)()
             created.save()
             print(created.id)
