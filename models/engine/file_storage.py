@@ -14,7 +14,7 @@ from models.review import Review
 import os
 
 
-class FileStorage():
+class FileStorage:
     """
     serializes and deserialzes data
     """
@@ -40,12 +40,11 @@ class FileStorage():
 
     def reload(self):
         """deserializes the JSON file to objects"""
-        new_obj_dict = {}
         try:
             with open(self.__file_path, mode="r", encoding="UTF-8") as f:
-                new_obj_dict = json.load(f)
+                new_obj_dict = {json.load(f)}
                 for k, v in new_obj_dict.items():
                     self.__objects[k] = eval(v["__class__"])(**v)
-                    # above is similar to self.__objects[k] = BaseModel(**v)
+
         except FileNotFoundError:
             pass

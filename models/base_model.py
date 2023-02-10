@@ -8,7 +8,7 @@ Base Model class
 """
 
 
-class BaseModel():
+class BaseModel:
     """
     Base class defining all attributes and methods
     """
