@@ -31,7 +31,10 @@ class BaseModel():
             models.storage.new(self)
 
     def __str__(self):
-        """Returns string representation of the class name, id and dictionary"""
+        """
+        Returns string representation of the class name,
+        id and dictionary
+        """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
