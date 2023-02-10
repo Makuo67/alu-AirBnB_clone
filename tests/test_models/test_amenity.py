@@ -8,7 +8,6 @@ import pep8
 from datetime import datetime
 from io import StringIO
 from contextlib import redirect_stdout
-import models
 from models.amenity import Amenity
 
 
