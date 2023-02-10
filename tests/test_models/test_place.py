@@ -20,7 +20,7 @@ class TestPlace(unittest.TestCase):
         """
         1. tests if the city_id attribute of the
            Place object is an instance of the str class
-        2. tests if the city_id atttribute has the value of an empty string
+        2. tests if the city_id attribute has the value of an empty string
         """
         self.assertIsInstance(self.place.city_id, str)
         self.assertEqual(self.place.city_id, "")
@@ -29,7 +29,7 @@ class TestPlace(unittest.TestCase):
         """
         1. tests if the user_id attribute of the
            Place object is an instance of the str class
-        2. tests if the user_id atttribute has the value of an empty string
+        2. tests if the user_id attribute has the value of an empty string
         """
         self.assertIsInstance(self.place.user_id, str)
         self.assertEqual(self.place.user_id, "")
@@ -38,7 +38,7 @@ class TestPlace(unittest.TestCase):
         """
         1. test if the name attribute of the
            Place object is an instance of the str class
-        2. test if the name atttribute has the value of an empty string
+        2. test if the name attribute has the value of an empty string
         """
         self.assertIsInstance(self.place.name, str)
         self.assertEqual(self.place.name, "")
@@ -47,7 +47,7 @@ class TestPlace(unittest.TestCase):
         """
         1. test if the description attribute of the
            Place object is an instance of the str class
-        2. test if the description atttribute has the
+        2. test if the description attribute has the
            value of an empty string
         """
         self.assertIsInstance(self.place.description, str)
@@ -57,7 +57,7 @@ class TestPlace(unittest.TestCase):
         """
         1. test if the number_rooms attribute of the
            Place object is an instance of the int class
-        2. test if the number_rooms atttribute has the value of 0
+        2. test if the number_rooms attribute has the value of 0
         """
         self.assertIsInstance(self.place.number_rooms, int)
         self.assertEqual(self.place.number_rooms, 0)
@@ -66,7 +66,7 @@ class TestPlace(unittest.TestCase):
         """
         1. test if the number_bathrooms attribute of the
            Place object is an instance of the int class
-        2. test if the number_bathrooms atttribute has the value of 0
+        2. test if the number_bathrooms attribute has the value of 0
         """
         self.assertIsInstance(self.place.number_bathrooms, int)
         self.assertEqual(self.place.number_bathrooms, 0)
@@ -75,7 +75,7 @@ class TestPlace(unittest.TestCase):
         """
         1. test if the max_guest attribute of the
            Place object is an instance of the int class
-        2. test if the max_guest atttribute has the value of 0
+        2. test if the max_guest attribute has the value of 0
         """
         self.assertIsInstance(self.place.max_guest, int)
         self.assertEqual(self.place.max_guest, 0)
@@ -84,7 +84,7 @@ class TestPlace(unittest.TestCase):
         """
         1. test if the price_by_night attribute of the
            Place object is an instance of the int class
-        2. test if the price_by_night atttribute has the value of 0
+        2. test if the price_by_night attribute has the value of 0
         """
         self.assertIsInstance(self.place.price_by_night, int)
         self.assertEqual(self.place.price_by_night, 0)
@@ -93,7 +93,7 @@ class TestPlace(unittest.TestCase):
         """
         1. test if the latitude attribute of the
            Place object is an instance of the float class
-        2. test if the latitude atttribute has the value of 0.0
+        2. test if the latitude attribute has the value of 0.0
         """
         self.assertIsInstance(self.place.latitude, float)
         self.assertEqual(self.place.latitude, 0.0)
@@ -102,7 +102,7 @@ class TestPlace(unittest.TestCase):
         """
         1. test if the longitude attribute of the
            Place object is an instance of the float class
-        2. test if the longitude atttribute has the value of 0.0
+        2. test if the longitude attribute has the value of 0.0
         """
         self.assertIsInstance(self.place.longitude, float)
         self.assertEqual(self.place.longitude, 0.0)
@@ -111,7 +111,7 @@ class TestPlace(unittest.TestCase):
         """
         1. test if the amenity_ids attribute of the
            Place object is an instance of the list class
-        2. test if the amenity_ids atttribute has the value of an empty list
+        2. test if the amenity_ids attribute has the value of an empty list
         """
         self.assertIsInstance(self.place.amenity_ids, list)
         self.assertEqual(self.place.amenity_ids, [])

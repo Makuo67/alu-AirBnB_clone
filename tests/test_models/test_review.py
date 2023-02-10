@@ -20,7 +20,7 @@ class TestReview(unittest.TestCase):
         """
         1. tests if the place_id attribute of the
            Review object is an instance of the str class
-        2. tests if  the place_id atttribute has the value of an empty string
+        2. tests if  the place_id attribute has the value of an empty string
         """
         self.assertIsInstance(self.review.place_id, str)
         self.assertEqual(self.review.place_id, "")
@@ -29,7 +29,7 @@ class TestReview(unittest.TestCase):
         """
         1. test if the user_id attribute of the
            Review object is an instance of the str class
-        2. test if the user_id atttribute has the value of an empty string
+        2. test if the user_id attribute has the value of an empty string
         """
         self.assertIsInstance(self.review.user_id, str)
         self.assertEqual(self.review.user_id, "")
@@ -38,7 +38,7 @@ class TestReview(unittest.TestCase):
         """
         1. test if the text attribute of the
            Review object is an instance of the str class
-        2. test if the text atttribute has the value of an empty string
+        2. test if the text attribute has the value of an empty string
         """
         self.assertIsInstance(self.review.text, str)
         self.assertEqual(self.review.text, "")
