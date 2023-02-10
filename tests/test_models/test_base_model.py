@@ -8,7 +8,7 @@ from models.base_model import BaseModel
 from datetime import datetime
 from io import StringIO
 from contextlib import redirect_stdout
-
+import time
 
 class TestBaseModel(unittest.TestCase):
     """ Unit Tests"""
@@ -42,11 +42,12 @@ class TestBaseModel(unittest.TestCase):
             a)
 
     def test_save(self):
-        """test for save method"""
-        copy_1 = BaseModel()
-        copy_1.name = "James"
-        copy_1.save()
-        self.assertNotEqual(copy_1.created_at, copy_1.updated_at)
+        """test save."""
+        base = BaseModel()
+        time.sleep(1)
+        base.save()
+        self.assertNotEqual(base.updated_at, base.created_at)
+        self.assertTrue(base.updated_at > base.created_at)
 
 
 if __name__ == "__main__":
