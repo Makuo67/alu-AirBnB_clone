@@ -19,6 +19,7 @@ class HBNBCommand(cmd.Cmd):
                   "City", "Amenity", "Place", "Review"]
 
     def do_quit(self, line):
+
         """Call quit command"""
         return True
 
