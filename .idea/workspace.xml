@@ -4,9 +4,6 @@
     <list default="true" id="e38aff11-7fea-4526-ba0f-1b4540b9fda0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_models/test_amenity.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_models/test_amenity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_models/test_place.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_models/test_place.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_models/test_review.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_models/test_review.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_models/test_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_models/test_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +76,7 @@
       <workItem from="1675988292881" duration="6516000" />
       <workItem from="1676026666290" duration="730000" />
       <workItem from="1676027403626" duration="4393000" />
-      <workItem from="1676031885178" duration="4786000" />
+      <workItem from="1676031885178" duration="5682000" />
     </task>
     <servers />
   </component>
