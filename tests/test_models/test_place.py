@@ -6,7 +6,7 @@ Tests for Place Module
 import unittest
 import pep8
 from datetime import datetime
-import models
+from models import storage
 from models.place import Place
 
 
