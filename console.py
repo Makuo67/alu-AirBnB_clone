@@ -108,46 +108,6 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        # Create a new instance of the class
-        new_object = eval(class_name + "()")
-
-        # Parse the attributes and set them on the new object
-        attributes = args[1:]
-        for attribute in attributes:
-            # Split the attribute into key and value
-            key_value = attribute.split('=')
-            if len(key_value) != 2:
-                # Attribute is not formatted correctly, skip it
-                continue
-            key, value = key_value
-
-            # Convert the value to the appropriate data type
-            if value.startswith('"') and value.endswith('"'):
-                # String value, remove quotes and replace underscores with spaces
-                value = value[1:-1].replace('_', ' ')
-                value = value.replace('\\"', '"')
-            elif '.' in value:
-                # Float value
-                try:
-                    value = float(value)
-                except ValueError:
-                    # Value can't be converted to float, skip it
-                    continue
-            else:
-                # Integer value
-                try:
-                    value = int(value)
-                except ValueError:
-                    # Value can't be converted to int, skip it
-                    continue
-
-            # Set the attribute on the new object
-            setattr(new_object, key, value)
-
-        # Save the new object and print its ID
-        new_object.save()
-        print(new_object.id)
-        storage.save()
 
     def do_show(self, args):
         """
