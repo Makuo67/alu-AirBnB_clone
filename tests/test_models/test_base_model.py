@@ -1,77 +1,99 @@
 #!/usr/bin/python3
-
-
-"""Unittest module for the BaseModel Class."""
-
-from models import storage
+""" Base Model tests"""
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
-from datetime import datetime
+import unittest
+import datetime
+from uuid import UUID
 import json
 import os
-import re
-import time
-import unittest
-import time
-import uuid
-from io import StringIO
-from unittest.mock import patch
 
 
-class TestBaseModel(unittest.TestCase):
-    """Test cases for BaseModel ."""
+class test_basemodel(unittest.TestCase):
+    """ Class test"""
 
-    def test_instance(self):
-        """test instance."""
-        base = BaseModel()
-        self.assertIsInstance(base, BaseModel)
+    def __init__(self, *args, **kwargs):
+        """ Init"""
+        super().__init__(*args, **kwargs)
+        self.name = 'BaseModel'
+        self.value = BaseModel
 
-    def test_is_class(self):
-        """test instance."""
-        base = BaseModel()
-        self.assertEqual(str(type(base)),
-                         "<class 'models.base_model.BaseModel'>")
+    def setUp(self):
+        """ Set up"""
+        pass
+
+    def tearDown(self):
+        try:
+            os.remove('file.json')
+        except FileNotFoundError:
+            pass
+
+    def test_default(self):
+        """Default """
+        i = self.value()
+        self.assertEqual(type(i), self.value)
+
+    def test_kwargs(self):
+        """ Key word arguments"""
+        i = self.value()
+        copy = i.to_dict()
+        new = BaseModel(**copy)
+        self.assertFalse(new is i)
+
+    def test_kwargs_int(self):
+        """Key word argument initialization """
+        i = self.value()
+        copy = i.to_dict()
+        copy.update({1: 2})
+        with self.assertRaises(TypeError):
+            new = BaseModel(**copy)
 
     def test_save(self):
-        """test save."""
-        base = BaseModel()
-        time.sleep(1)
-        base.save()
-        self.assertNotEqual(base.updated_at, base.created_at)
-        self.assertTrue(base.updated_at > base.created_at)
+        """ Testing save """
+        i = self.value()
+        i.save()
+        key = self.name + "." + i.id
+        with open('file.json', 'r') as f:
+            j = json.load(f)
+            self.assertEqual(j[key], i.to_dict())
 
-    def test_save_file(self):
-        """test save."""
-        if os.path.isfile("file.json"):
-            os.remove(os.path.join("file.json"))
-            print(os.path.isfile("file.json"))
-        base = BaseModel()
-        print(base.id)
-        time.sleep(1)
-        base.save()
-        self.assertTrue(os.path.isfile("file.json"))
-        with open("file.json", 'w') as file:
-            serialized_content = json.load(file)
-            for item in serialized_content.values():
-                self.assertIsNotNone(item['__class__'])
+    def test_str(self):
+        """ Tests for str"""
+        i = self.value()
+        self.assertEqual(str(i), '[{}] ({}) {}'.format(self.name, i.id,
+                         i.__dict__))
 
-    def test_str_(self):
-        """test str."""
-        base = BaseModel()
+    def test_todict(self):
+        """Tests new dictionaries """
+        i = self.value()
+        n = i.to_dict()
+        self.assertEqual(i.to_dict(), n)
 
-        with patch("sys.stdout", new=StringIO()) as fake_out:
-            print(base)
-            self.assertEqual(fake_out.getvalue(),
-                             "[{}] ({}) {}\n".format(base.__class__.__name__,
-                                                     base.id,
-                                                     base.__dict__))
+    def test_kwargs_none(self):
+        """ Key words"""
+        n = {None: None}
+        with self.assertRaises(TypeError):
+            new = self.value(**n)
 
-    def test_to_dict(self):
-        """test dict."""
-        base = BaseModel()
-        dict_repr = base.to_dict()
-        self.assertTrue(dict_repr['__class__'] == base.__class__.__name__)
+    def test_kwargs_one(self):
+        """ """
+        n = {'Name': 'test'}
+        with self.assertRaises(KeyError):
+            new = self.value(**n)
 
+    def test_id(self):
+        """ Id tests"""
+        new = self.value()
+        self.assertEqual(type(new.id), str)
 
-if __name__ == "__main__":
-    unittest.main()
+    def test_created_at(self):
+        """Tests for created at """
+        new = self.value()
+        self.assertEqual(type(new.created_at), datetime.datetime)
+
+    def test_updated_at(self):
+        """Tests for updated at """
+        new = self.value()
+        self.assertEqual(type(new.updated_at), datetime.datetime)
+        n = new.to_dict()
+        new = BaseModel(**n)
+        self.assertTrue(new.created_at < new.updated_at)
