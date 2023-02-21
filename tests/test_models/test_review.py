@@ -6,7 +6,7 @@ Tests for Review Module
 import unittest
 import pep8
 from datetime import datetime
-from models import storage
+import models
 from models.review import Review
 
 
