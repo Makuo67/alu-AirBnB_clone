@@ -1,71 +1,91 @@
 #!/usr/bin/python3
-"""
-Base Model tests
-"""
-import json
-import unittest
+""" Base Model tests"""
 from models.base_model import BaseModel
-from datetime import datetime
-from io import StringIO
-from contextlib import redirect_stdout
-import time
+import unittest
+import datetime
+from uuid import UUID
+import json
 import os
 
 
-class TestBaseModel(unittest.TestCase):
-    """ Unit Tests"""
+class test_basemodel(unittest.TestCase):
+    """ Class test"""
 
-    def test_to_dict(self):
-        """tests for to_dict method"""
+    def __init__(self, *args, **kwargs):
+        """ Init"""
+        super().__init__(*args, **kwargs)
+        self.name = 'BaseModel'
+        self.value = BaseModel
 
-        copy = BaseModel()
-        copy_dict = copy.to_dict()
-        self.assertIsInstance(copy_dict["created_at"], str)
+    def setUp(self):
+        """ Set up"""
+        pass
 
-    def test_unique_id(self):
-        """tests for id uniqueness"""
-        copy = BaseModel()
-        copy_2 = BaseModel()
-        self.assertNotEqual(copy.id, copy_2.id)
+    def tearDown(self):
+        try:
+            os.remove('file.json')
+        except FileNotFoundError:
+            pass
 
-    def test_created_at(self):
-        """tests for created_at attribute"""
-        copy = BaseModel()
-        self.assertIsInstance(copy.created_at, datetime)
+    def test_default(self):
+        """Default """
+        i = self.value()
+        self.assertEqual(type(i), self.value)
 
-    def test_str(self):
-        """tests for str method"""
-        with StringIO() as bufr, redirect_stdout(bufr):
-            my_cop = BaseModel()
-            print(my_cop.__str__())
-            a = bufr.getvalue()
-        self.assertIn(
-            f'[{my_cop.__class__.__name__}] ({my_cop.id}) {my_cop.__dict__}',
-            a)
+    def test_kwargs(self):
+        """ Key word arguments"""
+        i = self.value()
+        copy = i.to_dict()
+        new = BaseModel(**copy)
+        self.assertFalse(new is i)
+
+    def test_kwargs_int(self):
+        """Key word argument initialization """
+        i = self.value()
+        copy = i.to_dict()
+        copy.update({1: 2})
+        with self.assertRaises(TypeError):
+            new = BaseModel(**copy)
 
     def test_save(self):
-        """test save."""
-        base = BaseModel()
-        time.sleep(1)
-        base.save()
-        self.assertNotEqual(base.updated_at, base.created_at)
-        self.assertTrue(base.updated_at > base.created_at)
+        """ Testing save """
+        i = self.value()
+        i.save()
+        key = self.name + "." + i.id
+        with open('file.json', 'r') as f:
+            j = json.load(f)
+            self.assertEqual(j[key], i.to_dict())
 
-    def test_save_file(self):
-        """test save."""
-        if os.path.isfile("file.json"):
-            os.remove(os.path.join("file.json"))
-            print(os.path.isfile("file.json"))
-        base = BaseModel()
-        print(base.id)
-        time.sleep(1)
-        base.save()
-        self.assertTrue(os.path.isfile("file.json"))
-        with open("file.json", 'w') as file:
-            serialized_content = json.load(file)
-            for item in serialized_content.values():
-                self.assertIsNotNone(item['__class__'])
+    def test_str(self):
+        """ Tests for str"""
+        i = self.value()
+        self.assertEqual(str(i), '[{}] ({}) {}'.format(self.name, i.id,
+                         i.__dict__))
 
+    def test_todict(self):
+        """Tests new dictionaries """
+        i = self.value()
+        n = i.to_dict()
+        self.assertEqual(i.to_dict(), n)
 
-if __name__ == "__main__":
-    unittest.main()
+    def test_kwargs_none(self):
+        """ Key words"""
+        n = {None: None}
+        with self.assertRaises(TypeError):
+            new = self.value(**n)
+
+    def test_id(self):
+        """ Id tests"""
+        new = self.value()
+        self.assertEqual(type(new.id), str)
+
+    def test_created_at(self):
+        """Tests for created at """
+        new = self.value()
+        self.assertEqual(type(new.created_at), datetime.datetime)
+
+    def test_updated_at(self):
+        """Tests for updated at """
+        new = self.value()
+        self.assertEqual(type(new.updated_at), datetime.datetime)
+

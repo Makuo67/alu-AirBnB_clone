@@ -94,29 +94,20 @@ class HBNBCommand(cmd.Cmd):
            Creates a new instance of a class,
            saves it (to the JSON file) and prints the id.
 
-      """
+        """
         # If the class name is missing,
         # print ** class name missing ** (ex: $ create)
         if len(args) < 1:
             print("** class name missing **")
             return
-        # If the class name doesn’t exist,
-        # print ** class doesn't exist ** (ex: $ create MyModel)
 
-        # convert the args to a list
+        # Split the arguments by spaces and get the class name and the attributes
         args = args.split()
-
-        # the 1st element of the list is the class name
         class_name = args[0]
         if class_name not in self.__all_classes:
             print("** class doesn't exist **")
             return
-        # print(self.__all_classes)
-        # eval() interprets a string as a piece of python code
-        new_object = eval(class_name + "()")
-        new_object.save()
-        print(new_object.id)
-        storage.save()
+
 
     def do_show(self, args):
         """
